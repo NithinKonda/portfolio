@@ -7,11 +7,35 @@ import chessLogo from '../assets/chessy.jpg'
 import gitHubLogo from '../assets/github.svg'
 import gitIvertLogo from '../assets/gitinvert.png'
 
+const ragAscii = [
+  "  .----------------.  ",
+  " |  RETRIEVAL     |  ",
+  " |   .--------.   |  ",
+  " |   |  LLM   |   |  ",
+  " |   `--------'   |  ",
+  " |  AUGMENTATION  |  ",
+  " |  GENERATION    |  ",
+  "  `----------------'  ",
+].join('\n');
+
+const vsCodeAscii = [
+  " .----------------.  ",
+  " |                |  ",
+  " |   /\\    /\\     |  ",
+  " |  |  |  |  |    |  ",
+  " |   \\  \\/  /     |  ",
+  " |    \\    /      |  ",
+  " |     \\  /       |  ",
+  " |      \\/        |  ",
+  " |     CODE       |  ",
+  "  `----------------'  ",
+].join('\n');
+
 const projects = [
   {
     title: "Enhanced Search Engine using RAG",
     description: "An AI-powered browser extension using Retrieval-Augmented Generation (RAG) to deliver accurate and real-time responses via LLM integration. Performed domain-specific fine-tuning (finance, healthcare, news) to reduce hallucinations and improve contextual accuracy. Implemented transparent output by displaying both generated answers and source documents to build user trust.",
-    imageUrl: GroupGPTLogo,
+    asciiArt: ragAscii,
     githubLink: "",
     tech: "Python, TensorFlow",
     period: "Feb 2025",
@@ -19,7 +43,7 @@ const projects = [
   {
     title: "VS Code Usage Tracker",
     description: "A VS Code extension to automatically track coding sessions, capturing start/end times and calculating duration for productivity analysis. Implemented file activity logging to record files accessed during each session, enabling detailed insight into workflow patterns.",
-    imageUrl: portfolioLogo,
+    asciiArt: vsCodeAscii,
     githubLink: "",
     tech: "Typescript",
     period: "Dec 2024",
@@ -76,11 +100,17 @@ const Projects = () => {
               key={index}
               className="border border-white p-3 md:p-4 hover:bg-white hover:text-black transition-colors duration-300"
             >
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="mb-3 md:mb-4 w-full h-40 md:h-48 object-cover"
-              />
+              {project.asciiArt ? (
+                <pre className="text-white text-[10px] md:text-xs font-mono leading-tight whitespace-pre mb-3 md:mb-4 p-2 bg-black border border-gray-700 hover:bg-white hover:text-black transition-colors duration-300">
+                  {project.asciiArt}
+                </pre>
+              ) : (
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  className="mb-3 md:mb-4 w-full h-40 md:h-48 object-cover"
+                />
+              )}
               <h2 className="text-base md:text-lg font-bold">{project.title}</h2>
               {project.tech && project.period && (
                 <p className="text-xs md:text-sm text-green-500 mb-1">{project.tech} | {project.period}</p>
