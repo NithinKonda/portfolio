@@ -62,7 +62,7 @@ const Contact = () => {
           <div className="bg-black text-white p-4 md:p-8 flex-grow overflow-y-auto text-base md:text-xl" style={{ minHeight: '300px', maxHeight: '60vh' }}>
             {step >= 1 && (
               <div className="mb-6 md:mb-8">
-                <p className="text-sm md:text-base">C:\Users\> Enter your email:</p>
+                <p className="text-sm md:text-base">C:{'\'}Users{'}>'} Enter your email:</p>
                 <input
                   type="email"
                   value={email}
@@ -77,7 +77,7 @@ const Contact = () => {
 
             {step >= 2 && (
               <div className="mb-6 md:mb-8">
-                <p className="text-sm md:text-base">C:\Users\> Enter your name:</p>
+                <p className="text-sm md:text-base">C:{'\'}Users{'}>'} Enter your name:</p>
                 <input
                   type="text"
                   value={name}
@@ -92,7 +92,7 @@ const Contact = () => {
 
             {step >= 3 && (
               <div className="mb-6 md:mb-8">
-                <p className="text-sm md:text-base">C:\Users\> Enter a description:</p>
+                <p className="text-sm md:text-base">C:{'\'}Users{'}>'} Enter a description:</p>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
