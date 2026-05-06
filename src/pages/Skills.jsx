@@ -1,4 +1,3 @@
-
 import reactLogo from '../assets/reactjs.svg';
 import Clogo from '../assets/C.svg';
 import cssLogo from '../assets/css.svg';
@@ -35,25 +34,23 @@ const skills = [
 
 const Skills = () => {
   return (
-    <div>
-            <div className="flex items-center mb-12">
-        <h2 className="text-5xl font-bold text-white mr-8">Skills</h2>
+    <div className="px-4 md:px-6">
+      <div className="flex items-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-white mr-4 md:mr-8">Skills</h2>
         <div className="flex-grow border-t-2 border-white"></div>
       </div>
-        <div className="skills-grid-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 p-1">
-      {skills.map((skill, index) => (
-        <div
-          key={index}
-          className="skill-item flex flex-col items-center justify-center space-y-2 p-4 bg-gray-800 rounded-lg"
-        >
-          <img src={skill.logo} alt={`${skill.name} logo`} className="skill-logo h-14 w-12" />
-          {/* Uncomment to show the skill name */}
-          <span className="text-white font-mono">{skill.name}</span>
-        </div>
-      ))}
+      <div className="skills-grid-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 p-1">
+        {skills.map((skill, index) => (
+          <div
+            key={index}
+            className="skill-item flex flex-col items-center justify-center space-y-2 p-3 md:p-4 bg-gray-800 rounded-lg"
+          >
+            <img src={skill.logo} alt={`${skill.name} logo`} className="skill-logo h-10 w-10 md:h-14 md:w-12" />
+            <span className="text-white font-mono text-xs md:text-sm">{skill.name}</span>
+          </div>
+        ))}
+      </div>
     </div>
-    </div>
-  
   );
 };
 

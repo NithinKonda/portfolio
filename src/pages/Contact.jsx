@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com'; // Import EmailJS
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
-  const [step, setStep] = useState(1); // Tracks the current step in the form
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false); // State for tracking form submission
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       if (step === 1 && email) {
-        setStep(2); // Move to name input after entering email
+        setStep(2);
       } else if (step === 2 && name) {
-        setStep(3); // Move to description input after entering name
+        setStep(3);
       }
     }
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent form submission reload
+    e.preventDefault();
 
     const templateParams = {
       email,
@@ -27,17 +27,14 @@ const Contact = () => {
       description,
     };
 
-    // Send the email using EmailJS
     emailjs.send('service_4u0p81m','template_z3nwywd', templateParams,'KNn_BbblQkasCsF9v')
       .then((response) => {
         console.log('Email sent successfully:', response.status, response.text);
         setIsSubmitted(true);
-
-        // Reset form after successful submission
         setEmail('');
         setName('');
         setDescription('');
-        setStep(1); // Go back to the first step
+        setStep(1);
       })
       .catch((error) => {
         console.error('Failed to send email:', error);
@@ -45,89 +42,80 @@ const Contact = () => {
   };
 
   return (
-    <div>
-      {/* Heading with Divider */}
-      <div className="flex items-center mb-12">
-        <h2 className="text-6xl font-bold text-white mr-8">Contact</h2>
+    <div className="px-4 md:px-6">
+      <div className="flex items-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-6xl font-bold text-white mr-4 md:mr-8">Contact</h2>
         <div className="flex-grow border-t-4 border-white"></div>
       </div>
       
-      {/* Main Contact Box */}
-      <div className="min-h-screen bg-black flex items-center justify-center font-mono">
-        <div className="w-full max-w-7xl h-[800px] border-4 border-white flex flex-col">
-          {/* Command Prompt Top Bar */}
-          <div className="bg-gray-800 flex justify-between items-center p-4 border-b-4 border-white">
-            <span className="text-white text-lg">Command Prompt</span>
+      <div className="bg-black text-white font-mono py-4 md:py-8">
+        <div className="w-full border-2 md:border-4 border-white flex flex-col">
+          <div className="bg-gray-800 flex justify-between items-center p-3 md:p-4 border-b-2 md:border-b-4 border-white">
+            <span className="text-white text-sm md:text-lg">Command Prompt</span>
             <div className="flex space-x-2">
-              <span className="h-4 w-4 bg-white rounded-full inline-block"></span>
-              <span className="h-4 w-4 bg-white rounded-full inline-block"></span>
-              <span className="h-4 w-4 bg-white rounded-full inline-block"></span>
+              <span className="h-3 w-3 md:h-4 md:w-4 bg-white rounded-full inline-block"></span>
+              <span className="h-3 w-3 md:h-4 md:w-4 bg-white rounded-full inline-block"></span>
+              <span className="h-3 w-3 md:h-4 md:w-4 bg-white rounded-full inline-block"></span>
             </div>
           </div>
 
-          {/* Command Line Interface Box */}
-          <div className="bg-black text-white p-8 flex-grow overflow-y-auto text-xl">
-            {/* Email Input */}
+          <div className="bg-black text-white p-4 md:p-8 flex-grow overflow-y-auto text-base md:text-xl" style={{ minHeight: '300px', maxHeight: '60vh' }}>
             {step >= 1 && (
-              <div className="mb-8">
-                <p>C:\Users\> Enter your email:</p>
+              <div className="mb-6 md:mb-8">
+                <p className="text-sm md:text-base">C:\Users\> Enter your email:</p>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full bg-black text-white border-none outline-none text-2xl p-2"
+                  className="w-full bg-black text-white border-none outline-none text-lg md:text-2xl p-2"
                   placeholder="me@gmail.com"
                   disabled={step !== 1}
                 />
               </div>
             )}
 
-            {/* Name Input */}
             {step >= 2 && (
-              <div className="mb-8">
-                <p>C:\Users\> Enter your name:</p>
+              <div className="mb-6 md:mb-8">
+                <p className="text-sm md:text-base">C:\Users\> Enter your name:</p>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full bg-black text-white border-none outline-none text-2xl p-2"
+                  className="w-full bg-black text-white border-none outline-none text-lg md:text-2xl p-2"
                   placeholder="Bob Dylan"
                   disabled={step !== 2}
                 />
               </div>
             )}
 
-            {/* Description Input */}
             {step >= 3 && (
-              <div className="mb-8">
-                <p>C:\Users\> Enter a description:</p>
+              <div className="mb-6 md:mb-8">
+                <p className="text-sm md:text-base">C:\Users\> Enter a description:</p>
                 <textarea
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full bg-black text-white border-none outline-none text-2xl p-2"
+                  className="w-full bg-black text-white border-none outline-none text-lg md:text-2xl p-2"
                   placeholder="Type your message here..."
-                  rows="6"
+                  rows="4"
                 />
               </div>
             )}
 
-            {/* Submit Button */}
             {step === 3 && (
-              <div className="text-center mt-8">
+              <div className="text-center mt-6 md:mt-8">
                 <button
                   onClick={handleSubmit}
-                  className="bg-white text-black px-6 py-2 text-xl font-bold rounded-lg">
+                  className="bg-white text-black px-4 md:px-6 py-2 text-base md:text-xl font-bold rounded-lg">
                   Submit
                 </button>
               </div>
             )}
 
-            {/* Submission Confirmation */}
             {isSubmitted && (
               <div className="text-center text-green-500 mt-4">
-                <p>Email sent successfully!</p>
+                <p className="text-sm md:text-base">Email sent successfully!</p>
               </div>
             )}
           </div>

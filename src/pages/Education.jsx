@@ -20,22 +20,22 @@ const Education = () => {
   ];
 
   return (
-    <section className="space-y-6 p-6">
-      <div className="flex items-center mb-12">
-        <h2 className="text-5xl font-bold text-white mr-8">Education</h2>
+    <section className="space-y-6 px-4 md:px-6">
+      <div className="flex items-center mb-8 md:mb-12">
+        <h2 className="text-3xl md:text-5xl font-bold text-white mr-4 md:mr-8">Education</h2>
         <div className="flex-grow border-t-2 border-white"></div>
       </div>
       {educationData.map((item, index) => (
         <motion.div
           key={index}
-          className="border-l-2 border-white pl-4 ml-4"
+          className="border-l-2 border-white pl-4 ml-2 md:ml-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: index * 0.2 }}
         >
-          <div className="text-xl font-bold text-white">{item.institution}</div>
-          <div className="text-lg text-white">{item.degree}</div>
-          <div className="text-sm text-gray-400">{item.year}</div>
+          <div className="text-base md:text-xl font-bold text-white">{item.institution}</div>
+          <div className="text-sm md:text-lg text-white">{item.degree}</div>
+          <div className="text-xs md:text-sm text-gray-400">{item.year}</div>
         </motion.div>
       ))}
     </section>
